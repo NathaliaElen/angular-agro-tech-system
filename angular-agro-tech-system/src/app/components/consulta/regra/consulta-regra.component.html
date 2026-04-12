@@ -28,7 +28,7 @@
             <td>{{ item.limiteMin }}</td>
             <td>{{ item.limiteMax }}</td>
             <td>{{ item.prioridade }}</td>
-            <td><span class="badge" [ngClass]="item.status === 'ATIVO' ? 'badge-success' : 'badge-danger'">{{
+            <td><span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">{{
                 item.status }}</span></td>
           </tr>
           <tr *ngIf="regras.length === 0">

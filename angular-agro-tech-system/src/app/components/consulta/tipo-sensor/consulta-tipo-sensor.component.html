@@ -28,7 +28,7 @@
             <td>{{ item.unidadeMedida }}</td>
             <td>{{ item.descricao }}</td>
             <td>
-              <span class="badge" [ngClass]="item.status === 'ATIVO' ? 'badge-success' : 'badge-danger'">
+              <span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">
                 {{ item.status }}
               </span>
             </td>
@@ -63,8 +63,8 @@
         class="form-control" placeholder="Digite o valor para pesquisa">
       <select *ngIf="tipoPesquisa === 'status'" id="valorPesquisa" [(ngModel)]="valorPesquisa" class="form-control">
         <option value="">Selecione</option>
-        <option value="ATIVO">Ativo</option>
-        <option value="INATIVO">Inativo</option>
+        <option value="A">Ativo</option>
+        <option value="I">Inativo</option>
       </select>
     </div>
 

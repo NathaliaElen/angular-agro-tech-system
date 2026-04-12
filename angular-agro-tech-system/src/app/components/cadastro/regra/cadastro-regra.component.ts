@@ -22,7 +22,7 @@ export class CadastroRegraComponent {
     prioridade: 'BAIXA',
     areaId: '',
     sensorId: '',
-    status: 'ATIVO',
+    status: 'A',
   };
 
   message: string = '';
@@ -65,7 +65,7 @@ export class CadastroRegraComponent {
       prioridade: 'BAIXA',
       areaId: '',
       sensorId: '',
-      status: 'ATIVO',
+      status: 'A',
     };
     this.message = '';
   }
