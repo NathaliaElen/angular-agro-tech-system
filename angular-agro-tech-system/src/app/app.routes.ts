@@ -7,12 +7,14 @@ import { CadastroRegraComponent } from './components/cadastro/regra/cadastro-reg
 import { CadastroLeituraComponent } from './components/cadastro/leitura/cadastro-leitura.component';
 import { CadastroAlertaComponent } from './components/cadastro/alerta/cadastro-alerta.component';
 import { CadastroUsuarioComponent } from './components/cadastro/usuario/cadastro-usuario.component';
+import { CadastroAreaComponent } from './components/cadastro/area/cadastro-area.component';
 import { ConsultaTipoSensorComponent } from './components/consulta/tipo-sensor/consulta-tipo-sensor.component';
 import { ConsultaSensorComponent } from './components/consulta/sensor/consulta-sensor.component';
 import { ConsultaRegraComponent } from './components/consulta/regra/consulta-regra.component';
 import { ConsultaLeituraComponent } from './components/consulta/leitura/consulta-leitura.component';
 import { ConsultaAlertaComponent } from './components/consulta/alerta/consulta-alerta.component';
 import { ConsultaUsuarioComponent } from './components/consulta/usuario/consulta-usuario.component';
+import { ConsultaAreaComponent } from './components/consulta/area/consulta-area.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -30,12 +32,14 @@ export const routes: Routes = [
       { path: 'cadastro-leitura', component: CadastroLeituraComponent },
       { path: 'cadastro-alerta', component: CadastroAlertaComponent },
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
+      { path: 'cadastro-area', component: CadastroAreaComponent },
       { path: 'consulta-tipo-sensor', component: ConsultaTipoSensorComponent },
       { path: 'consulta-sensor', component: ConsultaSensorComponent },
       { path: 'consulta-regra', component: ConsultaRegraComponent },
       { path: 'consulta-leitura', component: ConsultaLeituraComponent },
       { path: 'consulta-alerta', component: ConsultaAlertaComponent },
       { path: 'consulta-usuario', component: ConsultaUsuarioComponent },
+      { path: 'consulta-area', component: ConsultaAreaComponent },
     ],
   },
   {
@@ -61,6 +65,11 @@ export const routes: Routes = [
   {
     path: 'cadastro-alerta',
     component: CadastroAlertaComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'cadastro-area',
+    component: CadastroAreaComponent,
     canActivate: [authGuard],
   },
   {
@@ -91,6 +100,11 @@ export const routes: Routes = [
   {
     path: 'consulta-usuario',
     component: ConsultaUsuarioComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'consulta-area',
+    component: ConsultaAreaComponent,
     canActivate: [authGuard],
   },
   { path: '**', redirectTo: '/login' },

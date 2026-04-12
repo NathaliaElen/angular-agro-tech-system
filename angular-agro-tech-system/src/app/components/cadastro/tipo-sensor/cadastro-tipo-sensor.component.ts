@@ -17,7 +17,7 @@ export class CadastroTipoSensorComponent {
     nome: '',
     unidadeMedida: '',
     descricao: '',
-    status: 'ATIVO',
+    status: 'A',
   };
 
   message: string = '';
@@ -55,7 +55,7 @@ export class CadastroTipoSensorComponent {
       nome: '',
       unidadeMedida: '',
       descricao: '',
-      status: 'ATIVO',
+      status: 'A',
     };
     this.message = '';
   }

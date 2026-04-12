@@ -2,26 +2,22 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegraService } from '../../../services/regra.service';
-import { Regra } from '../../../models/regra.model';
+import { AreaService } from '../../../services/area.service';
+import { Area } from '../../../models/area.model';
 
 @Component({
-  selector: 'app-cadastro-regra',
+  selector: 'app-cadastro-area',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './cadastro-regra.component.html',
+  templateUrl: './cadastro-area.component.html',
   styleUrls: ['../tipo-sensor/cadastro-tipo-sensor.component.css'],
 })
-export class CadastroRegraComponent {
-  regra: Regra = {
+export class CadastroAreaComponent {
+  area: Area = {
     nome: '',
-    descricao: '',
-    tipoSensorId: '',
-    limiteMin: 0,
-    limiteMax: 0,
-    prioridade: 'BAIXA',
-    areaId: '',
-    sensorId: '',
+    codigo: '',
+    latitude: undefined,
+    longitude: undefined,
     status: 'A',
   };
 
@@ -29,7 +25,7 @@ export class CadastroRegraComponent {
   messageType: 'success' | 'error' = 'success';
 
   constructor(
-    private regraService: RegraService,
+    private areaService: AreaService,
     private router: Router,
   ) {}
 
@@ -40,15 +36,15 @@ export class CadastroRegraComponent {
       return;
     }
 
-    this.regraService.salvar(this.regra).subscribe({
+    this.areaService.salvar(this.area).subscribe({
       next: () => {
-        this.message = 'Regra salva com sucesso!';
+        this.message = 'Área salva com sucesso!';
         this.messageType = 'success';
         this.onLimpar();
         setTimeout(() => (this.message = ''), 3000);
       },
       error: (error) => {
-        this.message = error.error?.message || 'Erro ao salvar Regra.';
+        this.message = error.error?.message || 'Erro ao salvar Área.';
         this.messageType = 'error';
         console.error('Erro:', error);
       },
@@ -56,15 +52,11 @@ export class CadastroRegraComponent {
   }
 
   onLimpar(): void {
-    this.regra = {
+    this.area = {
       nome: '',
-      descricao: '',
-      tipoSensorId: '',
-      limiteMin: 0,
-      limiteMax: 0,
-      prioridade: 'BAIXA',
-      areaId: '',
-      sensorId: '',
+      codigo: '',
+      latitude: undefined,
+      longitude: undefined,
       status: 'A',
     };
     this.message = '';
@@ -75,7 +67,7 @@ export class CadastroRegraComponent {
   }
 
   private validarCampos(): boolean {
-    if (!this.regra.nome || !this.regra.tipoSensorId) {
+    if (!this.area.nome || !this.area.codigo) {
       this.message = 'Por favor, preencha todos os campos obrigatórios.';
       this.messageType = 'error';
       return false;

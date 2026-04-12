@@ -18,7 +18,7 @@ export class CadastroSensorComponent {
     tipoSensorId: '',
     codigo: '',
     intervaloSegundos: 60,
-    status: 'ATIVO',
+    status: 'A',
   };
 
   message: string = '';
@@ -57,7 +57,7 @@ export class CadastroSensorComponent {
       tipoSensorId: '',
       codigo: '',
       intervaloSegundos: 60,
-      status: 'ATIVO',
+      status: 'A',
     };
     this.message = '';
   }
