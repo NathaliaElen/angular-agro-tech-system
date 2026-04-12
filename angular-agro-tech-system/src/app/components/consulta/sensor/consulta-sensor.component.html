@@ -1,0 +1,69 @@
+<div class="consulta-container">
+  <div class="consulta-card">
+    <h2 class="consulta-title">Consulta de Sensores</h2>
+    <div class="toolbar">
+      <button class="btn btn-success" (click)="onNovo()">Novo</button>
+      <button class="btn btn-primary" (click)="onPesquisar()">Pesquisar</button>
+      <button class="btn btn-secondary" (click)="onFechar()">Fechar</button>
+    </div>
+    <div class="error-message" *ngIf="message">{{ message }}</div>
+    <div class="grid-container">
+      <table class="data-grid">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Tipo Sensor ID</th>
+            <th>Área ID</th>
+            <th>Intervalo (s)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sensores">
+            <td>{{ item.id }}</td>
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.tipoSensorId }}</td>
+            <td>{{ item.areaId }}</td>
+            <td>{{ item.intervaloSegundos }}</td>
+            <td><span class="badge" [ngClass]="item.status === 'ATIVO' ? 'badge-success' : 'badge-danger'">{{
+                item.status }}</span></td>
+          </tr>
+          <tr *ngIf="sensores.length === 0">
+            <td colspan="6" style="text-align: center;">Nenhum registro encontrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showPesquisaModal" (click)="closePesquisa()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Pesquisar Sensor</h2>
+    <div class="form-group">
+      <label for="tipoPesquisa">Pesquisar por:</label>
+      <select id="tipoPesquisa" [(ngModel)]="tipoPesquisa" class="form-control">
+        <option value="todos">Buscar Todos</option>
+        <option value="id">Buscar por ID</option>
+        <option value="codigo">Buscar por Código</option>
+        <option value="areaId">Buscar por Área ID</option>
+        <option value="status">Buscar por Status</option>
+      </select>
+    </div>
+    <div class="form-group" *ngIf="tipoPesquisa !== 'todos'">
+      <label for="valorPesquisa">Valor:</label>
+      <input *ngIf="tipoPesquisa !== 'status'" type="text" id="valorPesquisa" [(ngModel)]="valorPesquisa"
+        class="form-control" placeholder="Digite o valor">
+      <select *ngIf="tipoPesquisa === 'status'" id="valorPesquisa" [(ngModel)]="valorPesquisa" class="form-control">
+        <option value="">Selecione</option>
+        <option value="ATIVO">Ativo</option>
+        <option value="INATIVO">Inativo</option>
+      </select>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-primary" (click)="confirmarPesquisa()">Confirmar</button>
+      <button class="btn btn-secondary" (click)="closePesquisa()">Cancelar</button>
+    </div>
+  </div>
+</div>

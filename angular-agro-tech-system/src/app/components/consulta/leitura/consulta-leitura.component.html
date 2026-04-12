@@ -1,0 +1,57 @@
+<div class="consulta-container">
+  <div class="consulta-card">
+    <h2 class="consulta-title">Consulta de Leituras de Sensores</h2>
+    <div class="toolbar">
+      <button class="btn btn-success" (click)="onNovo()">Novo</button>
+      <button class="btn btn-primary" (click)="onPesquisar()">Pesquisar</button>
+      <button class="btn btn-secondary" (click)="onFechar()">Fechar</button>
+    </div>
+    <div class="error-message" *ngIf="message">{{ message }}</div>
+    <div class="grid-container">
+      <table class="data-grid">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Sensor ID</th>
+            <th>Área ID</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of leituras">
+            <td>{{ item.id }}</td>
+            <td>{{ item.sensorId }}</td>
+            <td>{{ item.areaId }}</td>
+            <td>{{ item.valor }}</td>
+          </tr>
+          <tr *ngIf="leituras.length === 0">
+            <td colspan="4" style="text-align: center;">Nenhum registro encontrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showPesquisaModal" (click)="closePesquisa()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Pesquisar Leitura</h2>
+    <div class="form-group">
+      <label for="tipoPesquisa">Pesquisar por:</label>
+      <select id="tipoPesquisa" [(ngModel)]="tipoPesquisa" class="form-control">
+        <option value="todos">Buscar Todos</option>
+        <option value="id">Buscar por ID</option>
+        <option value="sensorId">Buscar por Sensor ID</option>
+        <option value="areaId">Buscar por Área ID</option>
+      </select>
+    </div>
+    <div class="form-group" *ngIf="tipoPesquisa !== 'todos'">
+      <label for="valorPesquisa">Valor:</label>
+      <input type="text" id="valorPesquisa" [(ngModel)]="valorPesquisa" class="form-control">
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-primary" (click)="confirmarPesquisa()">Confirmar</button>
+      <button class="btn btn-secondary" (click)="closePesquisa()">Cancelar</button>
+    </div>
+  </div>
+</div>

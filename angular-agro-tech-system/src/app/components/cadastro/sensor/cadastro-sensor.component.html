@@ -1,0 +1,53 @@
+<div class="cadastro-container">
+  <div class="cadastro-card">
+    <h2 class="cadastro-title">Cadastro de Sensor</h2>
+
+    <form (ngSubmit)="onSalvar()" #cadastroForm="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="codigo">Código *</label>
+          <input type="text" id="codigo" name="codigo" [(ngModel)]="sensor.codigo" required class="form-control"
+            placeholder="Digite o código do sensor">
+        </div>
+
+        <div class="form-group">
+          <label for="tipoSensorId">ID Tipo Sensor *</label>
+          <input type="text" id="tipoSensorId" name="tipoSensorId" [(ngModel)]="sensor.tipoSensorId" required
+            class="form-control" placeholder="Digite o ID do tipo de sensor">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="areaId">ID Área *</label>
+          <input type="text" id="areaId" name="areaId" [(ngModel)]="sensor.areaId" required class="form-control"
+            placeholder="Digite o ID da área">
+        </div>
+
+        <div class="form-group">
+          <label for="intervaloSegundos">Intervalo (segundos) *</label>
+          <input type="number" id="intervaloSegundos" name="intervaloSegundos" [(ngModel)]="sensor.intervaloSegundos"
+            required class="form-control" min="1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status *</label>
+        <select id="status" name="status" [(ngModel)]="sensor.status" required class="form-control">
+          <option value="ATIVO">Ativo</option>
+          <option value="INATIVO">Inativo</option>
+        </select>
+      </div>
+
+      <div class="message" *ngIf="message" [ngClass]="messageType === 'success' ? 'success-message' : 'error-message'">
+        {{ message }}
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="onLimpar()">Limpar</button>
+        <button type="button" class="btn btn-close" (click)="onFechar()">Fechar</button>
+      </div>
+    </form>
+  </div>
+</div>

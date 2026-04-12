@@ -1,0 +1,49 @@
+<div class="cadastro-container">
+  <div class="cadastro-card">
+    <h2 class="cadastro-title">Cadastro de Alerta</h2>
+
+    <form (ngSubmit)="onSalvar()" #cadastroForm="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regraId">ID Regra *</label>
+          <input type="text" id="regraId" name="regraId" [(ngModel)]="alerta.regraId" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="leituraSensorId">ID Leitura Sensor *</label>
+          <input type="text" id="leituraSensorId" name="leituraSensorId" [(ngModel)]="alerta.leituraSensorId" required
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="titulo">Título *</label>
+          <input type="text" id="titulo" name="titulo" [(ngModel)]="alerta.titulo" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="prioridade">Prioridade *</label>
+          <select id="prioridade" name="prioridade" [(ngModel)]="alerta.prioridade" required class="form-control">
+            <option value="BAIXA">Baixa</option>
+            <option value="MEDIA">Média</option>
+            <option value="ALTA">Alta</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" [(ngModel)]="alerta.mensagem" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="message" *ngIf="message" [ngClass]="messageType === 'success' ? 'success-message' : 'error-message'">
+        {{ message }}
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="onLimpar()">Limpar</button>
+        <button type="button" class="btn btn-close" (click)="onFechar()">Fechar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="cadastro-container">
+  <div class="cadastro-card">
+    <h2 class="cadastro-title">Cadastro de Leitura de Sensor</h2>
+
+    <form (ngSubmit)="onSalvar()" #cadastroForm="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="sensorId">ID Sensor *</label>
+          <input type="text" id="sensorId" name="sensorId" [(ngModel)]="leitura.sensorId" required class="form-control"
+            placeholder="Digite o ID do sensor">
+        </div>
+        <div class="form-group">
+          <label for="areaId">ID Área *</label>
+          <input type="text" id="areaId" name="areaId" [(ngModel)]="leitura.areaId" required class="form-control"
+            placeholder="Digite o ID da área">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="valor">Valor *</label>
+        <input type="number" id="valor" name="valor" [(ngModel)]="leitura.valor" required class="form-control"
+          step="0.01" placeholder="Digite o valor da leitura">
+      </div>
+
+      <div class="message" *ngIf="message" [ngClass]="messageType === 'success' ? 'success-message' : 'error-message'">
+        {{ message }}
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="onLimpar()">Limpar</button>
+        <button type="button" class="btn btn-close" (click)="onFechar()">Fechar</button>
+      </div>
+    </form>
+  </div>
+</div>
