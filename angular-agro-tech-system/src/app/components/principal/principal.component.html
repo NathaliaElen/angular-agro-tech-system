@@ -1,0 +1,64 @@
+<div class="principal-container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <h1>Agro Tech System</h1>
+      <span class="user-info">Bem-vindo, {{ userName }}</span>
+    </div>
+
+    <ul class="navbar-menu">
+      <li class="menu-item">
+        <span class="menu-title">Cadastros</span>
+        <ul class="submenu">
+          <li><a routerLink="/cadastro-tipo-sensor">Tipos Sensor</a></li>
+          <li><a routerLink="/cadastro-sensor">Sensor</a></li>
+          <li><a routerLink="/cadastro-regra">Regra</a></li>
+          <li><a routerLink="/cadastro-leitura">Leitura</a></li>
+          <li><a routerLink="/cadastro-alerta">Alerta</a></li>
+          <li><a routerLink="/cadastro-usuario">Usuário</a></li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <span class="menu-title">Consultas</span>
+        <ul class="submenu">
+          <li><a routerLink="/consulta-tipo-sensor">Tipos Sensor</a></li>
+          <li><a routerLink="/consulta-sensor">Sensor</a></li>
+          <li><a routerLink="/consulta-regra">Regra</a></li>
+          <li><a routerLink="/consulta-leitura">Leitura</a></li>
+          <li><a routerLink="/consulta-alerta">Alerta</a></li>
+          <li><a routerLink="/consulta-usuario">Usuário</a></li>
+        </ul>
+      </li>
+
+      <li class="menu-item">
+        <span class="menu-title">Sistema</span>
+        <ul class="submenu">
+          <li><a (click)="showAbout()">Sobre o Sistema</a></li>
+          <li><a (click)="onSair()">Sair</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<!-- Modal Sobre -->
+<div class="modal" *ngIf="showAboutModal" (click)="closeAbout()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Sobre o Sistema</h2>
+    <div class="about-info">
+      <h3>Agro Tech System</h3>
+      <p><strong>Autores:</strong></p>
+      <ul>
+        <li>Elizeu Barros</li>
+        <li>Nathália Elen</li>
+        <li>Nelson Fornazeiro</li>
+      </ul>
+      <p class="version">Versão 1.0.0</p>
+    </div>
+    <button class="btn btn-primary" (click)="closeAbout()">Fechar</button>
+  </div>
+</div>

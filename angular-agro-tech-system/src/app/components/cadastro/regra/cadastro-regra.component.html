@@ -1,0 +1,77 @@
+<div class="cadastro-container">
+  <div class="cadastro-card">
+    <h2 class="cadastro-title">Cadastro de Regra</h2>
+
+    <form (ngSubmit)="onSalvar()" #cadastroForm="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" name="nome" [(ngModel)]="regra.nome" required class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="tipoSensorId">ID Tipo Sensor *</label>
+          <input type="text" id="tipoSensorId" name="tipoSensorId" [(ngModel)]="regra.tipoSensorId" required
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" [(ngModel)]="regra.descricao" class="form-control"
+          rows="3"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="limiteMin">Limite Mínimo *</label>
+          <input type="number" id="limiteMin" name="limiteMin" [(ngModel)]="regra.limiteMin" required
+            class="form-control" step="0.01">
+        </div>
+        <div class="form-group">
+          <label for="limiteMax">Limite Máximo *</label>
+          <input type="number" id="limiteMax" name="limiteMax" [(ngModel)]="regra.limiteMax" required
+            class="form-control" step="0.01">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prioridade">Prioridade *</label>
+          <select id="prioridade" name="prioridade" [(ngModel)]="regra.prioridade" required class="form-control">
+            <option value="BAIXA">Baixa</option>
+            <option value="MEDIA">Média</option>
+            <option value="ALTA">Alta</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="status">Status *</label>
+          <select id="status" name="status" [(ngModel)]="regra.status" required class="form-control">
+            <option value="ATIVO">Ativo</option>
+            <option value="INATIVO">Inativo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="areaId">ID Área</label>
+          <input type="text" id="areaId" name="areaId" [(ngModel)]="regra.areaId" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="sensorId">ID Sensor</label>
+          <input type="text" id="sensorId" name="sensorId" [(ngModel)]="regra.sensorId" class="form-control">
+        </div>
+      </div>
+
+      <div class="message" *ngIf="message" [ngClass]="messageType === 'success' ? 'success-message' : 'error-message'">
+        {{ message }}
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" (click)="onLimpar()">Limpar</button>
+        <button type="button" class="btn btn-close" (click)="onFechar()">Fechar</button>
+      </div>
+    </form>
+  </div>
+</div>
