@@ -15,6 +15,8 @@ import { ConsultaLeituraComponent } from './components/consulta/leitura/consulta
 import { ConsultaAlertaComponent } from './components/consulta/alerta/consulta-alerta.component';
 import { ConsultaUsuarioComponent } from './components/consulta/usuario/consulta-usuario.component';
 import { ConsultaAreaComponent } from './components/consulta/area/consulta-area.component';
+import { CadastroPerfilComponent } from './components/cadastro/perfil/cadastro-perfil.component';
+import { ConsultaPerfilComponent } from './components/consulta/perfil/consulta-perfil.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -33,6 +35,7 @@ export const routes: Routes = [
       { path: 'cadastro-alerta', component: CadastroAlertaComponent },
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
       { path: 'cadastro-area', component: CadastroAreaComponent },
+      { path: 'cadastro-perfil', component: CadastroPerfilComponent },
       { path: 'consulta-tipo-sensor', component: ConsultaTipoSensorComponent },
       { path: 'consulta-sensor', component: ConsultaSensorComponent },
       { path: 'consulta-regra', component: ConsultaRegraComponent },
@@ -40,6 +43,7 @@ export const routes: Routes = [
       { path: 'consulta-alerta', component: ConsultaAlertaComponent },
       { path: 'consulta-usuario', component: ConsultaUsuarioComponent },
       { path: 'consulta-area', component: ConsultaAreaComponent },
+      { path: 'consulta-perfil', component: ConsultaPerfilComponent },
     ],
   },
   {
@@ -105,6 +109,16 @@ export const routes: Routes = [
   {
     path: 'consulta-area',
     component: ConsultaAreaComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'cadastro-perfil',
+    component: CadastroPerfilComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'consulta-perfil',
+    component: ConsultaPerfilComponent,
     canActivate: [authGuard],
   },
   { path: '**', redirectTo: '/login' },

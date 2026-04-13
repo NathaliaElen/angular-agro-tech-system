@@ -1,0 +1,64 @@
+<div class="consulta-container">
+  <div class="consulta-card">
+    <h2 class="consulta-title">Consulta dos Perfis</h2>
+
+    <div class="toolbar">
+      <button class="btn btn-success" (click)="onNovo()">Novo</button>
+      <button class="btn btn-primary" (click)="onPesquisar()">Pesquisar</button>
+      <button class="btn btn-secondary" (click)="onFechar()">Fechar</button>
+    </div>
+
+    <div class="error-message" *ngIf="message">{{ message }}</div>
+
+    <div class="grid-container">
+      <table class="data-grid">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of perfis">
+            <td>{{ item.nome }}</td>
+            <td>
+              <span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">
+                {{ item.status === 'A' ? 'ATIVO' : 'INATIVO' }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="perfis.length === 0">
+            <td colspan="2" style="text-align: center;">Nenhum registro encontrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Pesquisa -->
+<div class="modal" *ngIf="showPesquisaModal" (click)="closePesquisa()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Pesquisar Perfil</h2>
+
+    <div class="form-group">
+      <label for="tipoPesquisa">Pesquisar por:</label>
+      <select id="tipoPesquisa" [(ngModel)]="tipoPesquisa" class="form-control">
+        <option value="todos">Buscar Todos</option>
+        <option value="id">Buscar por ID</option>
+        <option value="nome">Buscar por Nome</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="tipoPesquisa !== 'todos'">
+      <label for="valorPesquisa">Valor:</label>
+      <input type="text" id="valorPesquisa" [(ngModel)]="valorPesquisa" class="form-control"
+        placeholder="Digite o valor para pesquisa">
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn btn-primary" (click)="confirmarPesquisa()">Confirmar</button>
+      <button class="btn btn-secondary" (click)="closePesquisa()">Cancelar</button>
+    </div>
+  </div>
+</div>
