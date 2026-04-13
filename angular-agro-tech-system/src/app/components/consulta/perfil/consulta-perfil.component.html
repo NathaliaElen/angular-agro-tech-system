@@ -14,7 +14,7 @@
       <table class="data-grid">
         <thead>
           <tr>
-            <th>Nome</th>
+            <th>Perfil</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -23,9 +23,9 @@
             <td>{{ item.nome }}</td>
             <td>
               <span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">
-                {{ item.status === 'A' ? 'ATIVO' : 'INATIVO' }}
+                {{ item.status === 'ATIVO' ? 'ATIVO' : 'INATIVO' }}
               </span>
-            </td>
+            </td>            
           </tr>
           <tr *ngIf="perfis.length === 0">
             <td colspan="2" style="text-align: center;">Nenhum registro encontrado</td>
