@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LeituraSensorService } from '../../../services/leitura-sensor.service';
+import { SensorService } from '../../../services/sensor.service';
+import { AreaService } from '../../../services/area.service';
 import { LeituraSensor } from '../../../models/leitura-sensor.model';
 
 @Component({
@@ -14,6 +16,8 @@ import { LeituraSensor } from '../../../models/leitura-sensor.model';
 })
 export class ConsultaLeituraComponent implements OnInit {
   leituras: LeituraSensor[] = [];
+  sensorMap: Map<string, string> = new Map();
+  areaMap: Map<string, string> = new Map();
   showPesquisaModal: boolean = false;
   tipoPesquisa: string = 'todos';
   valorPesquisa: string = '';
@@ -21,10 +25,22 @@ export class ConsultaLeituraComponent implements OnInit {
 
   constructor(
     private leituraService: LeituraSensorService,
+    private sensorService: SensorService,
+    private areaService: AreaService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.sensorService.buscarTodos().subscribe({
+      next: (dados) => dados.forEach((s) => this.sensorMap.set(s.id!, s.codigo)),
+      error: (err) => console.error('Erro ao carregar sensores:', err),
+    });
+
+    this.areaService.buscarTodos().subscribe({
+      next: (dados) => dados.forEach((a) => this.areaMap.set(a.id!, a.codigo)),
+      error: (err) => console.error('Erro ao carregar áreas:', err),
+    });
+
     this.carregarTodos();
   }
 

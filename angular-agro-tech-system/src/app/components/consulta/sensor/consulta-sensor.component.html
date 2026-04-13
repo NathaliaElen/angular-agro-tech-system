@@ -11,23 +11,21 @@
       <table class="data-grid">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Código</th>
-            <th>Tipo Sensor ID</th>
-            <th>Área ID</th>
+            <th>Sensor</th>
+            <th>Tipo de Sensor</th>
+            <th>Área</th>
             <th>Intervalo (s)</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of sensores">
-            <td>{{ item.id }}</td>
             <td>{{ item.codigo }}</td>
-            <td>{{ item.tipoSensorId }}</td>
-            <td>{{ item.areaId }}</td>
+            <td>{{ tipoSensorMap.get(item.tipoSensorId) }}</td>
+            <td>{{ areaMap.get(item.areaId) }}</td>
             <td>{{ item.intervaloSegundos }}</td>
             <td><span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">{{
-                item.status }}</span></td>
+                item.status === 'A' ? 'ATIVO' : 'INATIVO' }}</span></td>
           </tr>
           <tr *ngIf="sensores.length === 0">
             <td colspan="6" style="text-align: center;">Nenhum registro encontrado</td>

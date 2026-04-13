@@ -14,7 +14,6 @@
       <table class="data-grid">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Unidade Medida</th>
             <th>Descrição</th>
@@ -23,18 +22,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of tiposSensores">
-            <td>{{ item.id }}</td>
             <td>{{ item.nome }}</td>
             <td>{{ item.unidadeMedida }}</td>
             <td>{{ item.descricao }}</td>
             <td>
               <span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">
-                {{ item.status }}
+                {{ item.status === 'A' ? 'ATIVO' : 'INATIVO' }}
               </span>
             </td>
           </tr>
           <tr *ngIf="tiposSensores.length === 0">
-            <td colspan="5" style="text-align: center;">Nenhum registro encontrado</td>
+            <td colspan="4" style="text-align: center;">Nenhum registro encontrado</td>
           </tr>
         </tbody>
       </table>
