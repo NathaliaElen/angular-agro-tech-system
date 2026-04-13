@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SensorService } from '../../../services/sensor.service';
+import { TipoSensorService } from '../../../services/tipo-sensor.service';
+import { AreaService } from '../../../services/area.service';
 import { Sensor } from '../../../models/sensor.model';
+import { TipoSensor } from '../../../models/tipo-sensor.model';
+import { Area } from '../../../models/area.model';
 
 @Component({
   selector: 'app-cadastro-sensor',
@@ -12,7 +16,7 @@ import { Sensor } from '../../../models/sensor.model';
   templateUrl: './cadastro-sensor.component.html',
   styleUrls: ['./cadastro-sensor.component.css'],
 })
-export class CadastroSensorComponent {
+export class CadastroSensorComponent implements OnInit {
   sensor: Sensor = {
     areaId: '',
     tipoSensorId: '',
@@ -21,13 +25,30 @@ export class CadastroSensorComponent {
     status: 'A',
   };
 
+  tiposSensores: TipoSensor[] = [];
+  areas: Area[] = [];
+
   message: string = '';
   messageType: 'success' | 'error' = 'success';
 
   constructor(
     private sensorService: SensorService,
+    private tipoSensorService: TipoSensorService,
+    private areaService: AreaService,
     private router: Router,
   ) {}
+
+  ngOnInit(): void {
+    this.tipoSensorService.buscarTodos().subscribe({
+      next: (dados) => (this.tiposSensores = dados),
+      error: (err) => console.error('Erro ao carregar tipos de sensor:', err),
+    });
+
+    this.areaService.buscarTodos().subscribe({
+      next: (dados) => (this.areas = dados),
+      error: (err) => console.error('Erro ao carregar áreas:', err),
+    });
+  }
 
   onSalvar(): void {
     this.message = '';

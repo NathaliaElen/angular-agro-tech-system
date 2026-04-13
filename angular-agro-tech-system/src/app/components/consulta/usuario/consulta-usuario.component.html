@@ -23,7 +23,7 @@
             <td>{{ item.nome }}</td>
             <td>{{ item.email }}</td>
             <td><span class="badge" [ngClass]="item.status === 'A' ? 'badge-success' : 'badge-danger'">{{
-                item.status }}</span></td>
+                item.status === 'A' ? 'ATIVO' : 'INATIVO' }}</span></td>
           </tr>
           <tr *ngIf="usuarios.length === 0">
             <td colspan="4" style="text-align: center;">Nenhum registro encontrado</td>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SensorService } from '../../../services/sensor.service';
+import { AreaService } from '../../../services/area.service';
+import { TipoSensorService } from '../../../services/tipo-sensor.service';
 import { Sensor } from '../../../models/sensor.model';
 
 @Component({
@@ -14,6 +16,8 @@ import { Sensor } from '../../../models/sensor.model';
 })
 export class ConsultaSensorComponent implements OnInit {
   sensores: Sensor[] = [];
+  areaMap: Map<string, string> = new Map();
+  tipoSensorMap: Map<string, string> = new Map();
   showPesquisaModal: boolean = false;
   tipoPesquisa: string = 'todos';
   valorPesquisa: string = '';
@@ -21,10 +25,20 @@ export class ConsultaSensorComponent implements OnInit {
 
   constructor(
     private sensorService: SensorService,
+    private areaService: AreaService,
+    private tipoSensorService: TipoSensorService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.areaService.buscarTodos().subscribe({
+      next: (dados) => dados.forEach((a) => this.areaMap.set(a.id!, a.nome)),
+      error: (err) => console.error('Erro ao carregar áreas:', err),
+    });
+    this.tipoSensorService.buscarTodos().subscribe({
+      next: (dados) => dados.forEach((ts) => this.tipoSensorMap.set(ts.id!, ts.nome)),
+      error: (err) => console.error('Erro ao carregar tipos de sensor:', err),
+    });
     this.carregarTodos();
   }
 

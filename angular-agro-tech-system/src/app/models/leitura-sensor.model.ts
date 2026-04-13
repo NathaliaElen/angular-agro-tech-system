@@ -3,4 +3,5 @@ export interface LeituraSensor {
   sensorId: string;
   areaId: string;
   valor: number;
+  dataHora?: string;
 }

@@ -14,7 +14,6 @@
       <table class="data-grid">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Código</th>
             <th>Nome</th>
             <th>Latitude</th>
@@ -24,14 +23,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let area of areas">
-            <td>{{ area.id }}</td>
             <td>{{ area.codigo }}</td>
             <td>{{ area.nome }}</td>
             <td>{{ area.latitude || '-' }}</td>
             <td>{{ area.longitude || '-' }}</td>
             <td>
-              <span class="badge" [ngClass]="area.status === 'A' ? 'badge-success' : 'badge-danger'">
-                {{ area.status }}
+              <span class="badge" [ngClass]="area.status === 'A' ? 'badge-success' : 'badge-danger'">{{
+                area.status === 'A' ? 'ATIVO' : 'INATIVO' }}
               </span>
             </td>
           </tr>

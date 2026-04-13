@@ -11,18 +11,18 @@
       <table class="data-grid">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Sensor ID</th>
-            <th>Área ID</th>
+            <th>Sensor</th>
+            <th>Área</th>
             <th>Valor</th>
+            <th>Data da Leitura</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of leituras">
-            <td>{{ item.id }}</td>
-            <td>{{ item.sensorId }}</td>
-            <td>{{ item.areaId }}</td>
+            <td>{{ sensorMap.get(item.sensorId) }}</td>
+            <td>{{ areaMap.get(item.areaId) }}</td>
             <td>{{ item.valor }}</td>
+            <td>{{ item.dataHora | date:'dd/MM/yyyy HH:mm:ss' }}</td>
           </tr>
           <tr *ngIf="leituras.length === 0">
             <td colspan="4" style="text-align: center;">Nenhum registro encontrado</td>
